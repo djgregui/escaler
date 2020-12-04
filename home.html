@@ -1,0 +1,284 @@
+<!-- Tipo do Documento -->
+<!DOCTYPE html>
+
+<!-- Configuração de Linguagem -->
+<meta charset="UTF-8">
+
+<!-- Linkagem dessa página no arquivo de css -->
+<link rel="stylesheet" href="estilo.css">
+
+<!-- Título na Aba -->
+<title>Escaler</title>
+
+<!-- Favicon na Aba -->
+<link rel="shortcut icon" href="img/Logo/favicon.png" type="image/x-icon"/>
+
+<!-- Instalação das Bibliotecas -->
+<script src="vendor/jquery.js"></script> <!-- jQuery by Google -->
+<script src="vendor/popper.min.js"></script> <!-- Popper by Twitter -->
+<script src="vendor/bootstrap/js/bootstrap.js"></script> <!-- Bootstrap by Twitter -->
+<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Arapey:ital@1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" integrity="sha512-F5QTlBqZlvuBEs9LQPqc1iZv2UMxcVXezbHzomzS6Df4MZMClge/8+gXrKw2fl5ysdk4rWjR0vKS7NNkfymaBQ==" crossorigin="anonymous"></script>
+
+
+<!-- SISTEMA DE MENU FIXO -->
+
+<!-- Comando para fixagem de Informação/Elementos -->
+<div class="fixed-top">
+
+<!-- Área de Fixagem -->
+    <div class="row py-1 text-light" style="background: rgb(157, 2, 1)">
+        <div class="col-11 text-center"; style="padding-left: 130px">ESCALER - Sua Compra com Compromisso e Segurança</div>
+        <div class="col-1 text-right";>
+            <a href="login-adm-escaler.html">
+                <b style="color: white; padding-right: 10px">Acesso</b>
+            </a>
+        </div>
+    </div>
+
+<!-- Barra Branca onde vai Logo e Menu Horizontal -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-right">
+    <a class="navbar-brand abs" href="#"><img src="img/Logo/Logo fundo trasp.png" style="width: 11vw;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+<!-- Menu Principal Superior Horizontal -->
+    <div class="collapse navbar-collapse w-100 order-3 d-flex flex-md-fill flex-shrink-1 justify-content-end" id="navbarSupportedContent">
+        <div class="form-inline my-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="home.html" class="nav-link botao-menu-superior">Home</a>
+                </li>    
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                    
+                    
+                    
+                    
+                    
+                <li class="nav-item dropdown">
+                    <a class="nav-link botao-menu-superior " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a href="oculos_de_sol.html" class="dropdown-item botao-menu-superior">Óculos de Sol</a>
+                        <a href="moda_masculina.html" class="dropdown-item botao-menu-superior">Moda Masculina</a>
+                        <a href="relogios_e_smartwatchs.html" class="dropdown-item botao-menu-superior">Relógios & SmartWatchs</a>
+                        <a href="acessorios_eletronicos.html" class="dropdown-item botao-menu-superior">Acessórios Eletrônicos</a>
+                        <a href="utensilios.html" class="dropdown-item botao-menu-superior">Utensílios</a>
+                        <a href="paginas_informativas.html" class="dropdown-item botao-menu-superior">Páginas Informativas</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+</div>
+
+
+<!-- Comando para separar Topo Fixado e Informações Abaixo Que Movimentam -->
+<main role="main" class="container-fluid" style="margin-top: 100px">
+
+
+
+    <!-- SISTEMA DE SLIDES -->
+
+<!-- Comando para Exibir Slides -->
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicadores de Movimentação do Carrossel Inferiores-->
+    <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <!-- <li data-target="#demo" data-slide-to="2"></li> -->
+    </ul>
+  
+    <!-- Imagens dos Slides -->
+    <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="img/site/homem_com_relogio2.jpg" alt="Los Angeles" style="width: 100%;margin-left: 0%; margin-right: 0%;height: 100%;">
+    </div>
+    <div class="carousel-item">
+            <img src="img/site/fashion-toronto-watch_4472x2.jpg" alt="Chicago" style="width: 100%;margin-left: 0%; margin-right: 0%; max-height: 100%;">
+    </div>
+       <!-- <div class="carousel-item">
+            <img src="sunglasses-making-a-splash_4472x2.jpg" alt="New York" style="width: 100%;margin-left: 0%; margin-right: 0%; max-height: 100%;">
+      </div> -->
+    </div>
+  
+    <!-- Botões de Movimentação do Carrossel Laterais-->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+    </a>
+  
+  </div>
+
+
+<!-- CORPO DA PÁGINA -->
+ 
+<div class="container">
+<div class="display container-black h3 py-4" style="font-family: 'Arapey'; font-size: 19px;
+font-style: normal; font-weight: 700">
+    <p class="text-center">
+        Seja bem vindo à ESCALER!
+    </p>
+    <p class="text-center">
+        Trabalhamos com diversos seguimentos, com fornecedores nacionais e importados.
+    </p>
+    <p class="text-center text-muted">
+        Queremos que sua experiência seja a melhor possível, com um atendimento de primeira, melhores formas de pagamento, e os melhores produtos do mercado.
+    </p>
+</div>
+</div>
+
+
+<div class="py-3">
+    <p class="text-center display h2">Lista de Coleções</p>
+    <p class="text-center">________</p>
+    <br>  <!-- Pular Linha -->
+</div>
+
+<!-- Fotos Miniaturas de Coleções -->
+<div class="container"> <!--Comando de contenção de elementos (como se estivessem dentro de uma caixa) -->
+        <div class="row">
+    
+            <div class="col-6 py-3">
+                <div class="container"  >
+                    <a href="relogios_e_smartwatchs.html">
+                        <img src="img/collections/colecao-relogios2.png" alt="Snow" style="width:100%;">
+                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Relógios & SmartWatchs</div>
+                    </a>
+                  </div> 
+            </div>
+    
+            <div class="col-6 py-3">
+                <div class="container">
+                    <a href="oculos_de_sol.html">
+                        <img src="img/collections/colecao-oculos2.png" alt="Snow" style="width:100%;">
+                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Óculos de Sol</div>
+                    </a>
+                </div> 
+            </div>
+
+            <div class="col-4 py-3">
+                <div class="container">
+                    <a href="acessorios_eletronicos.html">
+                        <img src="img/collections/colecao-eletronicos2.png" alt="Snow" style="width:100%;">
+                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Acessórios Eletrônicos</div>
+                    </a>
+                </div> 
+            </div>
+            <div class="col-4 py-3">
+                <div class="container">
+                    <a href="utensilios.html">
+                        <img src="img/collections/colecao-utensilios2.png" alt="Snow" style="width:100%;">
+                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Utensílios</div>
+                    </a>
+                </div> 
+            </div>
+            <div class="col-4 py-3">
+                <div class="container">
+                    <a href="moda_masculina.html">
+                        <img src="img/collections/colecao-moda-masculina2.png" alt="Snow" style="width:100%;">
+                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Moda Masculina</div>
+                    </a>
+                </div> 
+            </div>
+        </div>
+    </div>
+    </div>
+    
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+
+
+<!-- PRINCIPAIS PRODUTOS -->
+
+<div class="container"> <!--Comando de contenção de elementos (como se estivessem dentro de uma caixa) -->
+    <div class="row">
+
+        <div class="col-3 py-3"></div>
+
+        <div class="col-3 py-3">
+            <div class="container-black">
+                <a href="pagina_produto.html">
+                    <img src="img/products/produto1.jpg" alt="Snow" style="width:100%;">
+                </a>  
+            </div> 
+        </div>
+
+        <div class="col-3 py-3">
+            <div class="container-black">
+                <a href="pagina_produto.html" style="color: black;"><h1>OverSized LongLine</h1></a>
+                <p>R$ 79,90<br>
+                -------<br>
+                Size<br>
+                PP P M G GG EG
+                </p>
+                <br>
+                <div class=button-adcarrinho><b>Adicionar Ao Carrinho</b></div>
+                </div> <br>
+                <div class=button-comprarpaypal><b>Comprar com Paypal</b></div>
+                <div class="a" style="color: black;"><b>Mais opções de pagamento</b></div>
+            </div>
+        </div>
+
+        <div class="col-3 py-3"></div>
+    </div>
+</div>
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+
+<!-- BARRA DE NEWSLETTER -->
+
+<div class="barra-newsletter py-4">
+    <div class="text-center" style="font-family: 'Old Standard TT';">
+        <br>  <!-- Pular Linha -->
+        <br>  <!-- Pular Linha -->
+    <h2><b>Receber nosso newsletter</b></h2>
+    </div>
+    <div class="text-center" style="font-family: 'Arapey';">
+    <p><b>Promoções, novos produtos e vendas. Diretamente para sua caixa de entrada.</b></p>
+
+    <p>_____________________</p>
+    </div>
+
+    <br>  <!-- Pular Linha -->
+
+    <div class="text-center" style="font-family: 'Arapey'">
+    <form action="#" onsubmit="alert('seu email é: '+email.value);return false">
+        <input type="email" name="email" id="" style="border-radius: 5px; width: 500px; height: 50px; border: none">
+        <input type="submit" value="enviar" style="border-radius: 5px; width: 100px; height: 50px; color: white; background-color: black;">
+    </form>
+    <br>
+</div>
+</div>
+
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+<br>  <!-- Pular Linha -->
+
+
+<div class="text-center">
+@2020Escaler
+</div>
+
+<br>  <!-- Pular Linha -->
+
+
+</main> <!--Fecha Informação que movimenta, não fixo-->
