@@ -1,0 +1,118 @@
+/* Alinhamento de elementos */
+.a {text-align: center;}
+.b {text-align: left;}
+.c {text-align: right;}
+
+
+
+/* Estrutura do BackGround do Site */
+body {background-image: linear-gradient(to bottom,rgb(238, 137, 137),rgb(221,218,213)) !important;
+background-size: 100% 100%;
+background-attachment: fixed;
+
+display: -ms-flexbox;
+display: flex;
+-ms-flex-align: center;
+align-items: center;
+}
+
+body,html {margin:0;padding:0;}
+
+
+/* Estrutura da barra do cabeçalho no topo */
+.cabecalho-topo{
+    background-color: rgb(157, 2, 1);
+    position: fixed-toppo;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    border-top: 1px solid rgb(2, 2, 2);
+    height: 40px;}
+
+
+    /* Estrutura da barra do cabeçalho no topo */
+.fundo-login{
+    background-color: rgb(157, 2, 1);
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    border-top: 1px solid rgb(2, 2, 2);
+    height: 200px;}
+
+/* Frase de slogan que fica dentro do cabeçalho */
+.slogan-cabecalho{
+    height: 48px;
+    line-height: 48px;
+    position:fixed-toppo;
+    bottom:0.1px;
+    text-align: center;
+    margin-top: 0.5px;
+    color: rgb(255, 255, 255);}
+
+
+/* Estrutura dos botões do menu superior */
+.botao-menu-superior{
+    color: rgb(157, 2, 1) !important;
+    /* text-transform:uppercase; */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Estrutura da barra com newsletter embaixo */
+.barra-newsletter{
+background-color: rgb(206, 188, 188);
+bottom: 0;
+right: 0;
+width: 100%;}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;}
+
+.container-black {
+        position: relative;
+        text-align: center;
+        color: black;}
+
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      }
+
+.button-adcarrinho {
+background-color:white;
+position: relative;
+border-radius: 3px;
+border: 1px solid black;
+color: black;
+width: 300px;
+height: 40px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+padding-top: 8px;
+}
+
+.button-logar {
+background-color: rgb(157, 2, 1);
+position: relative;
+border-radius: 8px;
+border: 2px solid black;
+color: rgb(255, 255, 255);
+width: 300px;
+height: 40px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 18px;
+padding-top: 8px;
+}
+
+li {
+  list-style-type: none;
+}
