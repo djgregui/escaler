@@ -34,6 +34,10 @@
             <b>Senha:</b> <input type="password" style="border-radius:6px; background-color:white; height:40px; line-height:40px; padding-left:10px" 
             id="inputPassword"  placeholder="******" required="" name="senha"><br />
             
+            <?php if(isset($_GET['shop'])){?>
+                <input type='hidden' name='shop' value='<?=$_GET["shop"]?>'>
+            <?php }?> 
+
             <br>
             
             <button class="btn px-4 font-weight-bold text-uppercase btn-danger" type="submit">Entrar</button>

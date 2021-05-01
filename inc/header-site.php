@@ -76,14 +76,22 @@
         <a class="nav-link botao-menu-superior " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bars fa-2x"></i>
         </a>
-
+        
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a href="<?=BASEURL?>site/paginas/colecao-oculos-de-sol.php" class="dropdown-item botao-menu-superior">Óculos de Sol</a>
-          <a href="<?=BASEURL?>site/paginas/colecao-moda-masculina.php" class="dropdown-item botao-menu-superior">Moda Masculina</a>
-          <a href="<?=BASEURL?>site/paginas/colecao-acessorios-eletronicos.php" class="dropdown-item botao-menu-superior">Acessórios Eletrônicos</a>
-          <a href="<?=BASEURL?>site/paginas/colecao-utensilios.php" class="dropdown-item botao-menu-superior">Utensílios</a>
-          <a href="<?=BASEURL?>paginas_informativas.php" class="dropdown-item botao-menu-superior">Páginas Informativas</a>
-          <a href="<?=BASEURL?>site/paginas/colecao-relogios-e-smartwatchs.php" class="dropdown-item botao-menu-superior">Relógios & SmartWatchs</a>
+
+        <?php
+            // Entra no banco de dados
+            $db = open_database();
+            // Acessa o banco específico que quero a informação (o limite é a quantidade de itens seguidos mostrado)
+            $query = $db->query("SELECT * FROM colecoes");
+            // Comando que faz sequencia dos itens do banco de dados para apresentação de mais de 1 item
+            while($colecao=$query->fetch_assoc()){
+        ?>
+          <a href="<?=BASEURL?>site/paginas/colecao.php?id=<?=$colecao['id']?>" class="dropdown-item botao-menu-superior"><?=$colecao['nome']?></a>  
+        <?php
+            }
+        ?>
+        
         </div>
       </li>
     </ul>

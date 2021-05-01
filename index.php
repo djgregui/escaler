@@ -73,51 +73,30 @@ font-style: normal; font-weight: 700">
 <!-- Fotos Miniaturas de Coleções -->
 <div class="container"> <!--Comando de contenção de elementos (como se estivessem dentro de uma caixa) -->
         <div class="row">
-    
-            <div class="col-6 py-3">
+
+        <?php
+            // Entra no banco de dados
+            $db = open_database();
+            // Acessa o banco específico que quero a informação (o limite é a quantidade de itens seguidos mostrado)
+            $query = $db->query("SELECT * FROM colecoes LIMIT 5");
+            // Comando que faz sequencia dos itens do banco de dados para apresentação de mais de 1 item
+            while($colecao=$query->fetch_assoc()){
+        ?>
+            <!-- Botão das coleções -->
+            <div class="col-<?=$colecao['tamanho']?> py-3">
                 <div class="container"  >
-                    <a href="<?=BASEURL?>site/paginas/colecao-relogios-e-smartwatchs.php">
-                        <img src="<?=BASEURL?>img/collections/colecao-relogios2.png" alt="Snow" style="width:100%;">
-                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Relógios & SmartWatchs</div>
+                    <a href="<?=BASEURL?>site/paginas/colecao.php?id=<?=$colecao['id']?>">
+                        <img src="<?=BASEURL?><?=$colecao['url']?>" alt="Snow" style="width:100%;">
+                        <div class="centered h1" style="font-family: 'Arapey'; color: white"><?=$colecao['nome']?></div>
                     </a>
                   </div> 
             </div>
-    
-            <div class="col-6 py-3">
-                <div class="container">
-                    <a href="<?=BASEURL?>site/paginas/colecao-oculos-de-sol.php">
-                        <img src="<?=BASEURL?>img/collections/colecao-oculos2.png" alt="Snow" style="width:100%;">
-                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Óculos de Sol</div>
-                    </a>
-                </div> 
-            </div>
 
-            <div class="col-4 py-3">
-                <div class="container">
-                    <a href="<?=BASEURL?>site/paginas/colecao-acessorios-eletronicos.php">
-                        <img src="<?=BASEURL?>img/collections/colecao-eletronicos2.png" alt="Snow" style="width:100%;">
-                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Acessórios Eletrônicos</div>
-                    </a>
-                </div> 
-            </div>
-            <div class="col-4 py-3">
-                <div class="container">
-                    <a href="<?=BASEURL?>site/paginas/colecao-utensilios.php">
-                        <img src="<?=BASEURL?>img/collections/colecao-utensilios2.png" alt="Snow" style="width:100%;">
-                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Utensílios</div>
-                    </a>
-                </div> 
-            </div>
-            <div class="col-4 py-3">
-                <div class="container">
-                    <a href="<?=BASEURL?>site/paginas/colecao-moda-masculina.php">
-                        <img src="<?=BASEURL?>img/collections/colecao-moda-masculina2.png" alt="Snow" style="width:100%;">
-                        <div class="centered h1" style="font-family: 'Arapey'; color: white">Moda Masculina</div>
-                    </a>
-                </div> 
-            </div>
+        <?php
+            }
+        ?>
+    
         </div>
-    </div>
     </div>
     
 <br>  <!-- Pular Linha -->
@@ -131,48 +110,72 @@ font-style: normal; font-weight: 700">
     <div class="row">
 
     <?php
-    function view($id) {
-        global $produto;
+        function view($id) {
+            global $produto;
+            $db = open_database();
+            $query = $db->query("SELECT * FROM produtos WHERE id='$id'");
+            $produto = $query->fetch_assoc();
+            $query2=$db->query($sql="SELECT * FROM produto_imagens WHERE id_produto = '$id'");
+            global $produto_imagens;
+            $produto_imagens = $query2->fetch_all(MYSQLI_ASSOC);   
+        }
         $db = open_database();
-        $query = $db->query("SELECT * FROM produtos WHERE id='$id'");
-        $produto = $query->fetch_assoc();
-        $query2=$db->query($sql="SELECT * FROM produto_imagens WHERE id_produto = '$id'");
-        global $produto_imagens;
-        $produto_imagens = $query2->fetch_all(MYSQLI_ASSOC);   
-    }
-    $db = open_database();
-        $query = $db->query("SELECT * FROM configuracoes WHERE nome='home_produto'");
-        $configuracao = $query->fetch_assoc();
-    view($id = (int) $configuracao['valor']);
-    ?>
+            $query = $db->query("SELECT * FROM configuracoes WHERE nome='home_produto'");
+            $configuracao = $query->fetch_assoc();
+        view($id = (int) $configuracao['valor']);
+        ?>
 
 
         <div class="col-3 py-3"></div>
 
         <div class="col-3 py-3">
             <div class="container-black">
-                <a href="<?=BASEURL?>site/paginas/produto.php">
+                <a href="<?=BASEURL?>site/paginas/produto.php?id=<?=$produto['id']?>">
                     <img src="<?=BASEURL?><?=$produto_imagens[0]['url']?>" alt="Snow" style="width:100%;">
                 </a>  
             </div> 
         </div>
+        <div class="container-black">
+                <a href="<?=BASEURL?>site/paginas/produto.php?id=<?=$produto['id']?>">
+                <h1 style="color: black;"><?=$produto['nome']?></h1></a>
+                <h3 id="produto_versao_preco"></h3>
 
-        <div class="col-3 py-3">
-            <div class="container-black">
-                <a href="<?=BASEURL?>site/paginas/produto.php" style="color: black;"><h1><?=$produto['nome']?></h1></a>
-                <p>R$ 79,90<br>
+                <script>
+                function troca_produto(id,valor){
+                    $('.btn-versao').attr('class','btn btn-outline-primary btn-versao')
+                    $('#btn-p'+id).attr('class','btn btn-primary btn-versao')
+                    document.getElementById('produto_versao_preco').innerText = 'R$ ' + parseFloat(valor).toFixed(2)
+                    document.getElementById('btn-shop').setAttribute("href",'<?=BASEURL?>shop.php?id='+id)
+                }
+                $(function(){
+                    <?php $id_produto = $produto['id']; $query = $db->query("SELECT * FROM produto_versoes WHERE id_produto='$id_produto'"); $produto_versao=$query->fetch_assoc(); $id_versao = $produto_versao['id']; ?>
+                    troca_produto(<?=$produto_versao['id']?>,<?=$produto_versao['valor']?>)
+                })
+                </script>
+
                 -------<br>
-                Size<br>
-                PP P M G GG EG
+                Tamanho/Versão<br>
+                
+                <?php
+                    // Entra no banco de dados
+                    $db = open_database();
+                    // Acessa o banco específico que quero a informação (o limite é a quantidade de itens seguidos mostrado)
+                    $id_produto = $produto['id'];
+                    $query = $db->query("SELECT * FROM produto_versoes WHERE id_produto='$id_produto'");
+                    // Comando que faz sequencia dos itens do banco de dados para apresentação de mais de 1 item
+                    while($versao=$query->fetch_assoc()){
+                ?>
+                    <a href="#"id='btn-p<?=$versao['id']?>' onclick="troca_produto(<?=$versao['id']?>,<?=$versao['valor']?>)" class="btn btn<?php if($versao['id'] != $id_versao){echo '-outline';}?>-primary btn-versao"><?=$versao['versao']?></a>  
+                <?php
+                }
+                ?>
+
                 </p>
                 <br>
-                <div class=button-adcarrinho><b>Adicionar Ao Carrinho</b></div>
-                </div> <br>
-                <div class=button-comprarpaypal><b>Comprar com Paypal</b></div>
-                <div class="a" style="color: black;"><b>Mais opções de pagamento</b></div>
+                <!-- <div class="btn btn-lg btn-outline-danger"><b>Adicionar Ao Carrinho</b></div> -->
+                <!-- <br><br> -->
+                <a href="#" id="btn-shop" class="btn btn-lg btn-warning font-weight-bold">Comprar Agora</a>
             </div>
-        </div>
-
         <div class="col-3 py-3"></div>
     </div>
 </div>
