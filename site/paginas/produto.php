@@ -21,28 +21,6 @@ error_reporting(E_ALL);
 ini_set('display_errors',1);
 ?>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AbBxOeUIjFIS1-81Aut-rUBpUVGzP_ndgmQOTTWDUPfNK7jJKDE5FyZpUA8OpX-D-esWdlE9pzqJjBAv"></script>
-<script>
-    paypal.Buttons({
-    createOrder: function(data, actions) {
-      // This function sets up the details of the transaction, including the amount and line item details.
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: '0.01'
-          }
-        }]
-      });
-    },
-    onApprove: function(data, actions) {
-      // This function captures the funds from the transaction.
-      return actions.order.capture().then(function(details) {
-        // This function shows a transaction success message to your buyer.
-        alert('Transaction completed by ' + details.payer.name.given_name);
-      });
-    }
-  }).render('#paypal-button-container');
-</script>
 <!-- CORPO DA PÁGINA -->
 
 <div class="py-3">
@@ -106,18 +84,43 @@ ini_set('display_errors',1);
         <div class="col-6 py-3">
             <div class="container-black">
                 <h1><?=$produto['nome']?></h1>
-                <h3>79,00</h3>
+                <h3 id="produto_versao_preco"></h3>
+
+                <script>
+                function troca_produto(id,valor){
+                    $('.btn-versao').attr('class','btn btn-outline-primary btn-versao')
+                    $('#btn-p'+id).attr('class','btn btn-primary btn-versao')
+                    document.getElementById('produto_versao_preco').innerText = 'R$ ' + parseFloat(valor).toFixed(2)
+                    document.getElementById('btn-shop').setAttribute("href",'<?=BASEURL?>shop.php?id='+id)
+                }
+                $(function(){
+                    <?php $id_produto = $produto['id']; $query = $db->query("SELECT * FROM produto_versoes WHERE id_produto='$id_produto'"); $produto_versao=$query->fetch_assoc(); $id_versao = $produto_versao['id']; ?>
+                    troca_produto(<?=$produto_versao['id']?>,<?=$produto_versao['valor']?>)
+                })
+                </script>
+
                 -------<br>
-                Size<br>
-                PP P M G GG EG
+                Tamanho/Versão<br>
+                
+                <?php
+                    // Entra no banco de dados
+                    $db = open_database();
+                    // Acessa o banco específico que quero a informação (o limite é a quantidade de itens seguidos mostrado)
+                    $id_produto = $produto['id'];
+                    $query = $db->query("SELECT * FROM produto_versoes WHERE id_produto='$id_produto'");
+                    // Comando que faz sequencia dos itens do banco de dados para apresentação de mais de 1 item
+                    while($versao=$query->fetch_assoc()){
+                ?>
+                    <a href="#"id='btn-p<?=$versao['id']?>' onclick="troca_produto(<?=$versao['id']?>,<?=$versao['valor']?>)" class="btn btn<?php if($versao['id'] != $id_versao){echo '-outline';}?>-primary btn-versao"><?=$versao['versao']?></a>  
+                <?php
+                }
+                ?>
+
                 </p>
                 <br>
-                <div class=button-adcarrinho><b>Adicionar Ao Carrinho</b></div>
-                <br>
-                <br>
-                <div class=button-comprarpaypal><b>Comprar com Paypal</b></div>
-                <div id="paypal-button-container"></div>
-                <div class="a" style="color: black;"><b>Mais opções de pagamento</b></div>
+                <!-- <div class="btn btn-lg btn-outline-danger"><b>Adicionar Ao Carrinho</b></div> -->
+                <!-- <br><br> -->
+                <a href="#" id="btn-shop" class="btn btn-lg btn-warning font-weight-bold">Comprar Agora</a>
             </div>
         </div>
     </div>

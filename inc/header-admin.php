@@ -50,7 +50,7 @@
     <nav class="navbar navbar-expand-sm bg-light navbar-right  justify-content-end">
 
 <!-- Logo -->
-    <a class="navbar-brand" href="<?=BASEURL?>adm/paginas">
+    <a class="navbar-brand" href="<?=BASEURL?>adm">
         <img src="<?=BASEURL?>img/Logo/Logo fundo trasp.png" alt="logo" style="max-height: 55px">
     </a>
 

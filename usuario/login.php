@@ -28,8 +28,16 @@ if($query->num_rows > 0) {
     $_SESSION['id_user'] = $user['id'];
     // Nome do Usuário
     $_SESSION['name'] = $user['name'];
+    if(isset($_POST['shop'])){
+        header('Location: shop.php?id='.filter_input(INPUT_POST,'shop',FILTER_SANITIZE_NUMBER_INT));
+        exit;
+    }
     // Envia pro Admin
     header("Location: index.php");
 } else {
+    if(isset($_POST['shop'])){
+        header('Location: login.php?shop='.filter_input(INPUT_POST,'shop',FILTER_SANITIZE_NUMBER_INT));
+        exit;
+    }
     header("Location: pagina-login.php?e=401");
 }
