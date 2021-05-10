@@ -3,3 +3,4 @@ composer.lock
 vendor
 .htaccess
 old_files
+img/users/
