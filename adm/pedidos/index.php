@@ -1,97 +1,56 @@
-<?php require_once '../../config.php'; ?>
-<?php require_once DBAPI; ?>
-
-<?php include(HEADER_ADMIN_TEMPLATE); ?>
-
-
-
-
-<!-- PHP CONECTANDO COM BANCO DE DADOS -->
-<?php
-function index() {
-    global $pedido;
-    $db = open_database();
-    $query = $db->query("SELECT * FROM pedidos");
-    $pedido = $query->fetch_all(MYSQLI_ASSOC);
-
-    global $item;
-    $db = open_database();
-    $query = $db->query("SELECT * FROM produtos");
-    $item = $query->fetch_all(MYSQLI_ASSOC);
-}
-index();
+<?php 
+    require_once '../../config.php'; 
+    require_once DBAPI;
+    require_once HEADER_ADMIN_TEMPLATE; 
+    $pedidos = get_pedidos();
+    require COMPOSER;
+	$mp = new MercadoPago\SDK;
+    $mp::setAccessToken(MP_API_TOKEN);
+    
 ?>
 
-<div class="row">
-                    <div class="col-12">
-                        <br>
-                        <p class="a font-weight-bold h2">Produtos</p>
-					</div>
-</div>
-
-<!-- TABELA DOS PRODUTOS -->
-
-<main role="main">
-
-
-<div class="container"> <!--Comando de contenção de elementos (como se estivessem dentro de uma caixa) -->
+<div class="container">
     <div class="row">
-
-        <div class="col-2 py-3"></div>
-        <div class="col-2 py-3"></div>
-        <div class="col-2 py-3"></div>
-        <div class="col-2 py-3"></div>
-        <div class="col-2 py-3"></div>
-
-        <div class="col-2 py-3">
-            <div class="container-black">
-                <a href="<?=BASEURL?>adm/produtos/add.php" class="btn btn-success">
-                    Adicionar
-                </a>
-            </div>
+        <div class="col-12">
+            <br>
+            <p class="text-center font-weight-bold h2">Pedidos</p>
         </div>
     </div>
 </div>
-
-
-    <div class="container">
-        <div style="background-color: pink;">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
-                    <tr>  <!-- "tr" é como uma linha de excel -->
-                        <th scope="col">#</th>  <!-- "th" é como uma célula formatada de excel ("td" é sem formatação) -->
-                        <th scope="col">Produto</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-
-                    <!-- Comando em php para executar um item em itens separados -->
-                    
+<div class="container mb-4">
+    <div style="background-color: pink;" class="table-responsive">
+        <table class="table table-bordered table-striped mb-0">
+            <thead class="thead-dark">
+                <tr>  <!-- "tr" é como uma linha de excel -->
+                    <th scope="col">Comprador</th>  <!-- "th" é como uma célula formatada de excel ("td" é sem formatação) -->
+                    <th scope="col">Produto</th>
+                    <th scope="col">Pagamento</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Data</th>
+                    <th scope="col"><i class="fas fa-cog"></i></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if(count($pedidos) > 0) { foreach($pedidos as $pedido) { $cliente = get_cliente($pedido['idusuario']); ?>
                     <tr>
-                        <th scope="row"><?=$item['nome']?></th>
-                        <td><?=$pedido['idproduto']?></td>
-                        <td><?php if(strlen($item['descricao']) > 120) { echo substr($item['descricao'],0,120) . "..."; } else { echo $item['descricao']; } ?></td>
-                        <td>
-                            <?php foreach(json_decode($item['tamanho'],true)[0] as $key => $value) {
-                                echo mb_strtoupper($key) . ": " . $value . "<br>";
-                            } ?>
-                        </td>
-                        <td>
-                            <a href="<?=BASEURL?>adm/produtos/view.php?id=<?=$item['id']?>" class="btn btn-success">Visualizar</a>
-                            <a href="<?=BASEURL?>adm/produtos/delete.php?id=<?=$item['id']?>" class="btn btn-danger">Deletar</a>
+                        <td style="white-space:nowrap"><a class='text-reset' href='<?=BASEURL?>adm/usuarios/view.php?id=<?=$pedido['idusuario']?>'><?=$cliente['nome']?></a></td>
+                        <td style="white-space:nowrap"><?php foreach(json_decode($pedido['idproduto']) as $produto) { echo "<li>".  get_produto_versao2($produto)['nome']."</li>"; } ?></td>
+                        <td style="white-space:nowrap" class='text-center'><?php if($pedido['payment_type'] == 'credit_card') { echo '<img src="https://brand.mastercard.com/content/dam/mccom/brandcenter/thumbnails/mastercard_circles_92px_2x.png" style="height:32px"><img src="https://usa.visa.com/dam/VCOM/regional/lac/ENG/Default/Partner%20With%20Us/Payment%20Technology/visapos/full-color-800x450.jpg" style="height:26px">';} else {echo '<img src="https://logodownload.org/wp-content/uploads/2019/06/mercado-pago-logo.png" style="height:32px">';} ?></td>
+                        <td style="white-space:nowrap"><?php if($pedido['id_payment'] != 'null') { $paymentId = 15005204329; $payment = $mp->get("/v1/payments/". $paymentId); echo "R$". number_format($payment['body']['transaction_amount'],2,',','.'); } ?></td>
+                        <td style="white-space:nowrap"><?=switch_status($pedido['status'])?></td>
+                        <td style="white-space:nowrap"><?=(new DateTime($pedido['datacompra']))->format('d/m/Y H:i:s')?></td>
+                        <td style="white-space:nowrap">
+                            <div class="btn-group"> 
+                                <a   href="view.php?id=<?=$pedido['id']?>" class="btn   btn-sm btn-success"><i class="fas fa-eye"></i></a>
+                                <a href="delete.php?id=<?=$pedido['id']?>" class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></a>
+                            </div>
                         </td>
                     </tr>
-                    
-
-                    
-                </tbody>
-            </table>
-        </div>
+                <?php } } else { echo '<tr><td class="text-center" colspan="6">Não foi encontrado resultados</td></tr>'; }?>
+            </tbody>
+        </table>
     </div>
-</main>
+</div>
 
-<?php include(FOOTER_ADMIN_TEMPLATE); ?> 
+<?php require_once FOOTER_ADMIN_TEMPLATE; 

@@ -20,20 +20,27 @@ $query = $db->query($sql);
 if($query->num_rows > 0) {
     // Guarda os dados numa variavel temporario
     $user = $query->fetch_assoc();
-    // Inicia sessão e variável $_SESSION
-    session_start();
-    // Saber se está logado
-    $_SESSION['loggedin_escaler'] = 1;
-    // Identificar pessoa
-    $_SESSION['id_user'] = $user['id'];
-    // Nome do Usuário
-    $_SESSION['name'] = $user['name'];
-    if(isset($_POST['shop'])){
-        header('Location: shop.php?id='.filter_input(INPUT_POST,'shop',FILTER_SANITIZE_NUMBER_INT));
-        exit;
+    if($user['u_status'] == '0') {
+        header("Location: pagina-login.php?e=425&email=".$usuario);
+    } else {
+        // Inicia sessão e variável $_SESSION
+        if(session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        // Saber se está logado
+        $_SESSION['loggedin_escaler'] = 1;
+        // Identificar pessoa
+        $_SESSION['id_user'] = $user['id'];
+        // Nome do Usuário
+        $_SESSION['name'] = $user['nome'];
+        if(isset($_POST['shop'])){
+            header('Location: shop.php?id='.filter_input(INPUT_POST,'shop',FILTER_SANITIZE_NUMBER_INT));
+        } else {
+            echo '<script>localStorage.cart=JSON.stringify([]);window.location.href="index.php"</script>';
+            // Envia pro Admin
+            // header("Location: index.php");
+        }
     }
-    // Envia pro Admin
-    header("Location: index.php");
 } else {
     if(isset($_POST['shop'])){
         header('Location: login.php?shop='.filter_input(INPUT_POST,'shop',FILTER_SANITIZE_NUMBER_INT));

@@ -1,3 +1,3 @@
 RewriteEngine On
 RewriteCond %{HTTP:CF-Visitor} '"scheme":"http"'
-RewriteRule ^(.*)$ https://escaler.interfi.net/$1 [L]
+RewriteRule ^(.*)$ https://escaler.com.br/$1 [L]

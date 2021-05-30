@@ -21,13 +21,12 @@ if($query->num_rows > 0) {
     // Guarda os dados numa variavel temporario
     $user = $query->fetch_assoc();
     // Inicia sessão e variável $_SESSION
-    session_start();
     // Saber se está logado
-    $_SESSION['loggedin_escaler'] = 1;
+    $_SESSION['loggedin_admescaler'] = 1;
     // Identificar pessoa
-    $_SESSION['id_user'] = $user['id'];
+    $_SESSION['id_admuser'] = $user['id'];
     // Nome do Usuário
-    $_SESSION['name'] = $user['name'];
+    $_SESSION['admname'] = $user['name'];
     // Envia pro Admin
     header("Location: index.php");
 }
