@@ -1,6 +1,10 @@
 {
     "require": {
         "mercadopago/dx-php": "^2.2",
-        "phpmailer/phpmailer": "^6.4"
+        "phpmailer/phpmailer": "^6.4",
+        "php-http/client-common": "^2.3",
+        "composer-fallback/php-http.client-implementation.guzzle7": "^1.1",
+        "php-http/discovery": "^1.13",
+        "php-http/guzzle7-adapter": "^1.0"
     }
 }

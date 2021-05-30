@@ -1,103 +1,57 @@
-<?php require_once '../../config.php'; ?>
-<?php require_once DBAPI; ?>
-
-<?php include(HEADER_ADMIN_TEMPLATE); ini_set('display_errors',1); ?>
-
- 
-
 <?php
-function view($id) {
-    global $usuario;
-    $db = open_database();
-    $query = $db->query("SELECT * FROM administrators WHERE id='$id'");
-    $usuario = $query->fetch_assoc();
-}
-view($_SESSION['id_user']);
-error_reporting(E_ALL);
-ini_set('display_errors',1);
+    require_once '../../config.php'; 
+    require_once DBAPI; 
+    include(HEADER_ADMIN_TEMPLATE); 
+    
+    function view($id) {
+        $db = open_database();
+        $query = $db->query("SELECT * FROM administrators WHERE id='$id'");
+        return $usuario = $query->fetch_assoc();
+    }
+    $usuario = view($_SESSION['id_admuser']);
 ?>
 <script>
-$(function(){
-    $("#col-cpf").inputMask({
-        mask: "###.###.###-##"
-    });
-    
-    //  $ = Inicia a variavel javascript.jquery
-    //  () = javascript.jquery.selector
-})
+    function enableEditAdmProfile() {
+        if(document.querySelector("#state").value == '0') {
+            $(".input-edit").removeAttr("disabled");
+            $("#btn-submit").html("Salvar");
+            $("#btn-cancel").toggleClass("btn-warning").toggleClass("btn-danger").html("Cancelar").attr("href","/adm/perfil");
+            $("#badge2").hide();
+            $("#state").val("1");
+        } else {
+            document.querySelector("form#form").submit();
+        }
+    }
 </script>
-<!-- CORPO DA PÁGINA -->
-
-
-<h2>Usuário ID nº:<?=$usuario['id']?></h2>
-
-
-<!-- Linha Divisória de Página -->
+<h2 class="text-center">Meus Dados</h2>
 <hr />
-
-<!-- Informações -->
-    <div class="row">
-
-        <div class="col-2"></div>
-        <div class="col-3">
+<form action="../processa.php?tipo=perfil" method="post" id="form">
+    <input type="hidden" id="state" value="0">
+    <input type="hidden" name="id" value="<?=$usuario['id']?>">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-12 mt-2">
                 <h6>Nome</h6>
-                <p style="border-radius:6px; background-color:white; height:40px; line-height:40px; padding-left:20px">
-                    <?=$usuario['nome']?>
-                </p>
-        </div>
-        <div class="col-5">
+                <input name="nome" type="text" class="form-control input-edit" disabled="disabled" value="<?=$usuario['nome']?>">
+            </div>
+            <div class="col-md-6 col-lg-6 col-12 mt-2">
                 <h6>Sobrenome</h6>
-                <p style="border-radius:6px; border: 1px solid lightgrey; background-color:white; height:40px; line-height:40px; padding-left:20px">
-                    <?=$usuario['sobrenome']?>
-                </p>
-        </div>
-        <div class="col-2"></div>
-
-        <div class="col-2"></div>
-        <div class="col-3">
+                <input name="sobrenome" type="text" class="form-control input-edit" disabled="disabled" value="<?=$usuario['sobrenome']?>">
+            </div>
+            <div class="col-md-8 col-lg-8 col-12 mt-2">
                 <h6><b>Email *</b></h6>
-                <p style="border-radius:6px; background-color:white; height:40px; line-height:40px; padding-left:20px">
-                    <?=$usuario['email']?>
-                </p>
+                <input name="email" type="text" class="form-control input-edit" disabled="disabled" value="<?=$usuario['email']?>" >
+            </div>
+            <div class="col-md-4 col-lg-4 col-12 mt-2">
+                <h6><b>Senha* <a href="javascript:enableEditPasswordProfile()" id="badge2" class="badge badge-danger"><i class="fas fa-pen"></i></a></b></h6>
+                <input type="text" class="form-control" disabled="disabled" value="●●●●●●">
+            </div>
+            <div class="col-12 pt-4 text-right">
+                <a href="<?=BASEURL?>adm/"   id="btn-cancel" class="btn btn-warning">Voltar</a>
+                <a href="javascript:void(0)" id="btn-submit" onclick="enableEditAdmProfile()" class="btn btn-primary">Editar</a>
+            </div>
         </div>
-        <div class="col-5">
-                <h6><b>Senha *</b></h6>
-                <p style="border-radius:6px; background-color:white; height:40px; line-height:40px; padding-left:20px">
-                ●●●●●●
-                </p>
-        </div>
-        <div class="col-2"></div>
-</div>
+    </div>
+</form>
  
-<br>
-<br>
-
-<div class="container">
-<div class="row">
-
-    <div class="col-md-10"></div>
-
-    <div class="col-md-1">
-      <a href="<?=BASEURL?>adm/index.php" class="btn btn-warning">Voltar</a>
-    </div>
-
-    <div class="col-md-1">
-      <a href="<?=BASEURL?>adm/perfil/view-edit.php" class="btn btn-primary">Editar</a>
-    </div>
-</div>
-</div>
-
-<br>  <!-- Pular Linha -->
-<br>  <!-- Pular Linha -->
-<br>  <!-- Pular Linha -->
-<br>  <!-- Pular Linha -->
-
-
-<div class="text-center">
-@2020Escaler
-</div>
-
-<br>  <!-- Pular Linha -->
-
-
-<?php include(FOOTER_ADMIN_TEMPLATE); ?>
+<?php require FOOTER_ADMIN_TEMPLATE; ?>
