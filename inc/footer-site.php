@@ -28,9 +28,9 @@ window.fbAsyncInit = function() {
             <a href="<?=BASEURL?>informativos/prazos-e-pagamentos.php" style="text-decoration:none; color:black"><b>Prazos de Envio e Entrega</b></a> <br/>
         </div>
         <div class="col-6">
-            <a href="https://www.instagram.com/escalermodaeacessorios/" style="text-decoration:none; color:black"><i class="fab fa-instagram-square fa-3x"></i></b></a>
-            <a href="https://www.facebook.com/escalerstore" style="text-decoration:none; color:black"><i class="fab fa-facebook-square fa-3x"></i></b></a>
-            <a href="mailto:contato.escaler@gmail.com" style="text-decoration:none; color:black"><i class="fas fa-envelope-square fa-3x"></i> <br />
+            <a href="https://www.instagram.com/escaler.store/" target="_blank" style="text-decoration:none; color:black"><i class="fab fa-instagram-square fa-3x"></i></b></a>
+            <a href="https://www.facebook.com/escalerstore" target="_blank" style="text-decoration:none; color:black"><i class="fab fa-facebook-square fa-3x"></i></b></a>
+            <a href="mailto:contato.escaler@gmail.com" target="_blank" style="text-decoration:none; color:black"><i class="fas fa-envelope-square fa-3x"></i> <br />
             <a href="#" style="text-decoration:none; color:black"><i class="fab fa-cc-mastercard fa-2x"></i>
             <a href="#" style="text-decoration:none; color:black"><i class="fab fa-cc-visa fa-2x"></i>
             <a href="#" style="text-decoration:none; color:black"><i class="fab fa-cc-paypal fa-2x"></i>
@@ -47,7 +47,7 @@ page_id="103597408587696">
 </div>
 
 <div style='height:10px'>&nbsp;</div>
-<div class="text-center">2020 - <?=date('Y')?> <img src="<?=BASEURL?>img/Logo/favicon.png" alt="" style="width:16px"> Escaler</div>
+<div class="text-center">2020 - <?=date('Y')?> <a href="/adm"><img src="<?=BASEURL?>img/Logo/favicon.png" alt="" style="width:16px"></a> Escaler</div>
 <div style='height:10px'>&nbsp;</div>
 
 <div style="display:none">

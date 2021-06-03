@@ -64,13 +64,24 @@
                     <?php } ?>
                 </p>
             </div>
+            <p class="text-center"><img src="/img/mercado-pago-logo.png" alt="" style="height:140px"></p>
         </div>
-    </div>
-    <div style="color: black">
-        <h6>Resumo</h6>
-        <p><?=$produto['descricao']?></p>
-        <?php if(strlen($produto['long_descricao']) > 10) {echo '<h6>Características</h6>'.$produto['long_descricao'];} ?>
         
+        <div class="col-md-12 col-lg-12 col-12 py-3">
+            <div style="color: black">
+                <h6>Resumo</h6>
+                <div id="long" style="width:100%;">
+                    <style>
+                        #long img { width:100%;}
+                    </style>
+                    <p><?=$produto['descricao']?></p>
+                    <?php if(strlen($produto['long_descricao']) > 10) {echo '<h6>Características</h6>'.$produto['long_descricao'];} ?>
+                </div>
+                
+            </div>
+            <div class="col-md-6 col-lg-6 col-12 py-3">
+        </div>
+
     </div>
 </div>
 

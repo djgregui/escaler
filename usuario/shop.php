@@ -28,7 +28,7 @@
         <?php foreach($produtos as $produto) { ?>
             <input type="hidden" name="shop_item[]" value="<?=$produto['versao_id']?>">
             <div class="col-12 mb-2">
-                <div class="card">
+                <div class="card" style="margin-bottom: 25px !important; box-shadow: 4px 4px 8px grey; border-radius: 5px;">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4 text-center col-12">
@@ -67,7 +67,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card" style="margin-bottom: 25px !important; box-shadow: 4px 8px 15px grey; border-radius: 15px;">
                         <div class="card-horizontal">
                             <div class="card-body">
                                 <h4 class="card-title">Endereço Cadastrado</h4>
@@ -76,7 +76,7 @@
                                  <p><?=$usuario['bairro'].', '.$usuario['cidade'].' - '.$usuario['estado']?></p>
                                  <p><b>CEP: </b><?=$usuario['cep']?></p>
                                  </div>
-                                 <a href="javascript:void(0)" onclick="reuseaddress()" class="btn btn-outline-primary">USAR ESTE ENDEREÇO</a>
+                                 <a href="javascript:void(0)" onclick="reuseaddress()" class="btn btn-outline-primary" >USAR ESTE ENDEREÇO</a>
                                  <a href="<?=BASEURL?>usuario/dados-pessoais/view-edit.php" target="_blank" class="btn btn-outline-danger">EDITAR</a>
                                  <!-- _blank faz abrir numa nova guia -->
                             </div>
@@ -87,7 +87,7 @@
         </div>
         <br>
         <div class="container-fluid">
-            <div class="card">
+            <div class="card" style="margin-bottom: 25px !important; box-shadow: 4px 8px 15px grey; border-radius: 15px;">
                 <div class="card-body">
                     <h4 class="card-title">Endereço de Entrega</h4>
 
@@ -157,7 +157,7 @@
         </div>
         <br>
         <div class="container-fluid mb-4">
-            <div class="card">
+            <div class="card" style="margin-bottom: 25px !important; box-shadow: 4px 8px 15px grey; border-radius: 15px;">
                 <div class="card-body">
                     <h4 class="card-title">Gerar Pedido</h4>
                     
@@ -189,7 +189,7 @@
                     <!-- <br> -->
                     <!-- Shopping success será colocado em outro momento porém dentro da $item do ML API -->
                     <!-- Leia: https://www.mercadopago.com.br/developers/pt/guides/online-payments/checkout-pro/advanced-integration#bookmark_url_de_retorno -->
-                    <button type='submit' class="btn btn-success btn-lg">Prosseguir para pagamento</button>
+                    <button type='submit' class="btn btn-success btn-lg"  style="margin-bottom: 25px !important; box-shadow: 4px 4px 8px grey; border-radius: 5px;">Prosseguir para pagamento</button>
                 </div>
             </div>
         </div>
