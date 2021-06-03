@@ -20,7 +20,7 @@ $produtos = get_produtos_from_json($dadosPedidos['idproduto']);
 <br>
 <div class="row">
     <div class="col-12 col-lg-6">
-        <div class="card">
+        <div class="card" style="margin-bottom: 25px !important; box-shadow: 4px 8px 15px grey; border-radius: 15px;">
             <div class="card-body">
                 <h4 class="card-title">Endereço de Entrega Preenchido</h4>
                 
@@ -59,18 +59,18 @@ $produtos = get_produtos_from_json($dadosPedidos['idproduto']);
             </div>
         </div>
         <div style="height:5px"></div>
-        <div class="card">
+        <div class="card" style="margin-bottom: 25px !important; box-shadow: 4px 8px 15px grey; border-radius: 15px;">
             <div class="card-body">
                 <h4 class="card-title">Pagamento do Pedido</h4>
                 <div class="card-text">
                     <h6><b>Status:</b>&nbsp;<?=switch_status($dadosPedidos['status'])?></h6>
-                    <?php if($dadosPedidos['status'] == '0' && $dadosPedidos['id_payment'] == null) { echo '<a class="btn btn-sm btn-danger" href="'.BASEURL.'usuario/shop-pay.php?tp=repay&id='.$dadosPedidos['id'].'">Pagar novamente</a>';}?>
+                    <?php if($dadosPedidos['status'] == '0' && $dadosPedidos['id_payment'] == null) { echo '<a class="btn btn-sm btn-danger" style="margin-bottom: 25px !important; box-shadow: 4px 4px 8px grey; border-radius: 5px;" href="'.BASEURL.'usuario/shop-pay.php?tp=repay&id='.$dadosPedidos['id'].'">Pagar novamente</a>';}?>
                 </div>
             </div>
         </div>
         <br>
         <p class="text-right">
-            <a href="<?=BASEURL?>usuario/pedidos" class="btn btn-danger">Voltar</a>
+            <a href="<?=BASEURL?>usuario/pedidos" class="btn btn-danger"  style="margin-bottom: 25px !important; box-shadow: 4px 4px 8px grey; border-radius: 5px;">Voltar</a>
         </p>
     </div>
     <div class="col-12 col-lg-6">
@@ -78,7 +78,7 @@ $produtos = get_produtos_from_json($dadosPedidos['idproduto']);
             <div class="row">
                 <?php foreach($produtos as $produto) {?>
                     <div class="col-12 mb-2">
-                        <div class="card">
+                        <div class="card" style="margin-bottom: 25px !important; box-shadow: 1px 1px 4px grey; border-radius: 15px;">
                             <div class="card-horizontal">
                                 <div class="img-square-wrapper py-3">
                                 <img class="" src="<?=BASEURL?><?=$produto['imagens'][0]['url']?>" alt="Card image cap" style="max-width:180px;aspect-ratio:9/16;padding-left:16px">

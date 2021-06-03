@@ -95,16 +95,5 @@ $(function(){
 </div>
 </form>
 <br>  <!-- Pular Linha -->
-<br>  <!-- Pular Linha -->
-<br>  <!-- Pular Linha -->
-<br>  <!-- Pular Linha -->
-
-
-<div class="text-center">
-@2020Escaler
-</div>
-
-<br>  <!-- Pular Linha -->
-
 
 <?php include(FOOTER_ADMIN_TEMPLATE); ?>

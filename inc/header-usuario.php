@@ -88,7 +88,7 @@
 				<a class="btn btn-sm btn-dark" href="javascript:toggleCart()" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">
 					<i class="fas fa-shopping-cart" style="color: white"></i>&nbsp;Carrinho&nbsp;<span class="badge badge-light">0</span>
 				</a>
-				<div class="dropdown-menu px-4 dropdown-menu-right" style='width:300px' id="drop1" aria-labelledby="dropdownMenuLink">
+				<div class="dropdown-menu px-4 dropdown-menu-right" style='width:300px;max-height: 70vh;overflow-y: scroll;' id="drop1" aria-labelledby="dropdownMenuLink">
 					<h6 class="text-center text-muted">Carrinho</h6>
 					<div class="dropdown-divider" style='margin: .5rem -15px;'></div>
 					<form action="<?=BASEURL?>usuario/shop.php?cart" method="post" id="">

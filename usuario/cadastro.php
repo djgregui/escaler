@@ -23,6 +23,14 @@
         <link rel="stylesheet" type="text/css" href="https://colorlib.com/etc/lf/Login_v2/css/main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
         <style>.absolute-bottom, .absolute-bottom a.text-reset {color: white !important;}.wrap-input100{margin-bottom:5px !important;}::-webkit-input-placeholder {text-align: center;}:-moz-placeholder {text-align: center;}</style>
+        <script>
+        function validateForm() {
+            if(!document.querySelector("#tos").checked) {
+                alert("Você não aceitou os termos de uso");
+                return false;
+            }
+        }
+        </script>
     </head>
     <body>
         <div class="fixed-top d-none">
@@ -40,21 +48,23 @@
                             <div class="alert alert-danger text-center mx-0 px-2 py-1" style='font-size:smaller'><?php if($_GET['e']=='425') { echo 'Este email não foi confirmado ainda, verifique sua caixa de entrada'; } elseif($_GET['e']=='400') { echo 'Este email já está em uso'; } ?></div>
                         <?php } ?>
                         <div class="wrap-input100 validate-input" data-validate="Email válido: nome@email.com">
-                            <input class="input100 has-val" type="text" name="customer[nome]" placeholder="Nome" autocomplete="given-name">
+                            <input required class="input100 has-val" type="text" name="customer[nome]" placeholder="Nome" autocomplete="given-name">
                         </div>
                         <div class="wrap-input100 validate-input" data-validate="Email válido: nome@email.com">
-                            <input class="input100 has-val" type="text" name="customer[sobrenome]" placeholder="Sobrenome" autocomplete="family-name">
+                            <input required class="input100 has-val" type="text" name="customer[sobrenome]" placeholder="Sobrenome" autocomplete="family-name">
                         </div>
                         <div class="wrap-input100 validate-input" data-validate="Email válido: nome@email.com">
-                            <input class="input100 has-val" type="email" name="customer[email]" placeholder="Email" autocomplete="email">
+                            <input required class="input100 has-val" type="email" name="customer[email]" placeholder="Email" autocomplete="email">
                         </div>
                         <div class="wrap-input100 mb-3 validate-input" data-validate="Insira a senha">
-                            <input class="input100 has-val" type="password" name="customer[senha]" placeholder="Senha" autocomplete="password">
+                            <input required class="input100 has-val" type="password" name="customer[senha]" placeholder="Senha" autocomplete="password">
                         </div>
+                        <label for="tos"><input required type="checkbox" name="tos" id="tos"> Concorda com os <a href="/informativos/termos-de-uso.php" class="text-reset">Termos de Uso</a></label>
+                        
                         <div class="container-login100-form-btn d-none">
                             <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
-                                <input type="submit" class="login100-form-btn" style="background: #ff4a01;">
+                                <input required type="submit" class="login100-form-btn" style="background: #ff4a01;">
                             </div>
                         </div>
                         <br>

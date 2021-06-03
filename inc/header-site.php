@@ -40,7 +40,10 @@
 		}
 		function addToCart(id) {
 			$.getJSON('/usuario/carrinho/ajax.php?id='+id,null,function(res){
-        temp=JSON.parse(localStorage.cart);temp.push(res);localStorage.cart = JSON.stringify(temp);
+        temp=JSON.parse(localStorage.cart);
+        console.log(res);
+        temp.push(res);
+        localStorage.cart = JSON.stringify(temp);
         if(JSON.parse(localStorage.cart).length > 0) {
           $("#scart-ac-keep").hide();$("#scart-ac-submit").show();
         }
@@ -53,21 +56,19 @@
 			$('#cart-area').append(`
 				<div class="form-group row mb-1" id='cart${n}'>
 					<input type="hidden" name="produto[]" value="${item.idv}">
-					<div class="col-10">
+					<div class="col-12">
 						<div class="row">
-							<div class="">
-								<img src="/${item.img}" alt="" style="height:48px;display:inline-block">
+							<div class="col-4 text-center">
+								<img src="/${item.img}" alt="" style="height:48px;display:inline-block;margin-bottom:32px">
+                <a href="javascript:void(0)" class="btn btn-sm btn-danger" style="position: absolute;bottom: 0px;left: 30%;"><i class="fas fa-minus"></i></a>
 							</div>
-							<div class="col-9">
+							<div class="col-8">
 								<div class="row">
-									<div class="col-12">${item.nome}</div>
-									<div class="col-12">R$ ${(parseFloat(item.valor)).toFixed(2)}</div>
+									<div class="col-12" style="margin-bottom:24px">${item.nome}</div>
+									<div class="col-12" style="position:absolute;bottom:0px;">R$ ${(parseFloat(item.valor)).toFixed(2)}</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-2" style='line-height:46px'>
-						<a href="#" class="btn btn-sm btn-outline-danger" id="btn-checkout" style="display:none"><i class="fas fa-minus"></i></a>
 					</div>
 				</div>
 				<div class="dropdown-divider" style='margin: .5rem -15px;'></div>
@@ -91,7 +92,7 @@
         <a class="btn btn-sm btn-dark" href="javascript:toggleCart()" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-shopping-cart" style="color: white"></i>&nbsp;Carrinho&nbsp;<span class="badge badge-light">0</span>
         </a>
-        <div class="dropdown-menu px-4 dropdown-menu-right" style='width:300px' id="drop1" aria-labelledby="dropdownMenuLink">
+        <div class="dropdown-menu px-4 dropdown-menu-right" style='width:300px;max-height: 70vh;overflow-x: auto;overflow-x:hidden' id="drop1" aria-labelledby="dropdownMenuLink">
           <h6 class="text-center text-muted">Carrinho</h6>
           <div class="dropdown-divider" style='margin: .5rem -15px;'></div>
           <form action="<?=BASEURL?>usuario/shop.php?cart" method="post" id="cart-area">

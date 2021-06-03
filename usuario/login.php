@@ -36,7 +36,7 @@ if($query->num_rows > 0) {
         if(isset($_POST['shop'])){
             header('Location: shop.php?id='.filter_input(INPUT_POST,'shop',FILTER_SANITIZE_NUMBER_INT));
         } else {
-            echo '<script>localStorage.cart=JSON.stringify([]);window.location.href="index.php"</script>';
+            echo '<script>if(localStorage.cart == undefined){localStorage.cart=JSON.stringify([]);}window.location.href="index.php"</script>';
             // Envia pro Admin
             // header("Location: index.php");
         }
