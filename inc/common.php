@@ -19,7 +19,7 @@ function get_produto_versao2($id){
 
 function get_versoes_produto($id) {
     $db = open_database();
-    $query = $db->query('SELECT versao, valor, id FROM produto_versoes WHERE status = 1 AND id_produto = "'.$id.'" ');
+    $query = $db->query('SELECT versao, estoque, valor, id FROM produto_versoes WHERE status = 1 AND id_produto = "'.$id.'" ');
     $produto = $query->fetch_all(MYSQLI_ASSOC); 
     return $produto;
 }

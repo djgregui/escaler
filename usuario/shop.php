@@ -5,6 +5,7 @@
     require HEADER_USUARIO_TEMPLATE;
     $produtos=[];
     if(isset($_GET['cart'])) {
+        $db_tracking->query("INSERT INTO tracking_shop VALUES (NULL,'$UUID','$IP','$COUNTRY','$ID','$DATETIME')");
         // echo json_encode($_POST);
         foreach($_POST['produto'] as $produto) {
             $produtos[]=get_produto_versao($produto);
