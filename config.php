@@ -44,6 +44,11 @@ define('DOMAIN','escaler.com.br');
 define('EMAIL','contato.escaler@gmail.com');
 
 /**
+ * Facebook Messenger API
+ */
+define('PAGE_ACCESS_TOKEN','EAAEpuZBlzV7ABACGFC1fptEyTVNcqqUfqXT7L1rJvw11djir00ZAzZB2t939qttb0iJby5luM3HIbQW3hgRZAVDCz7IWzEQ3ZAJ8634lMKZCB0vedvxwP2vKQT6zxQ3tu9ZBw0LrNBWh2LbdqS0nvAFKLDPtPVMWJ59CjS299EjLu0G6KFT6BuH');
+define('VERIFY_TOKEN','escaler_interfi_infocuspt');
+/**
  * Conta Bancária: 
  * Banco: 323 Mercado Pago 
  * Agência: 0001
@@ -114,8 +119,11 @@ if(!isset($_COOKIE['escaler_uuid'])) {
 } else {
     $UUID = $_SESSION['escaler_uuid'] = $_COOKIE['escaler_uuid'];
 }
-$db_tracking = new Mysqli('35.222.232.57','nano','mellany0801gui','hotspottest');
+// $db_tracking = new Mysqli('35.222.232.57','nano','mellany0801gui','hotspottest');
+$db_tracking = new mysqli('localhost','ptbr','ptbrxablau','escaler');
 $db_tracking->set_charset('utf8');
+ini_set('display_errors',1);
+$db_tracking = new Mysqli('localhost','ptbr','ptbrxablau','escaler');
 if(isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
     $IP = $_SERVER["HTTP_CF_CONNECTING_IP"];
 } else {
@@ -129,4 +137,4 @@ $ROUTE = explode('?',$_SERVER['REQUEST_URI'])[0]; $DATETIME = date('Y-m-d H:i:s'
 $db_tracking->query("INSERT INTO tracking VALUES (NULL,'$UUID','$IP','$COUNTRY','$ROUTE','$DATETIME')");
 echo $db_tracking->error;
 
-ini_set('display_errors',1);
+
