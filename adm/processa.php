@@ -8,7 +8,7 @@ switch($tipo) {
         $customer = filter_var_array($_POST['customer'],FILTER_SANITIZE_STRING);
         // echo json_encode($customer);
         $customer['imagens'] = ''; $customer['long_descricao'] = '';
-        $sql = "INSERT INTO produtos VALUES (NULL,'".$customer['nome']."','".$customer['original_url']."','".$customer['imagens']."','".$customer['video']."','".$customer['descricao']."','".$customer['long_descricao']."','".$customer['marca']."','".$customer['modelo']."','".$customer['id_colecao']."')";
+        $sql = "INSERT INTO produtos VALUES (NULL,'".$customer['nome']."','".$customer['original_url']."',1,'".$customer['imagens']."','".$customer['video']."','".$customer['descricao']."','".$customer['long_descricao']."','".$customer['marca']."','".$customer['modelo']."','".$customer['id_colecao']."')";
         $query = (open_database())->query($sql);
         header("Location:produtos");
     break;
@@ -23,7 +23,7 @@ switch($tipo) {
                 $produto_vvalor =  filter_var($_POST['valor'][$n],FILTER_SANITIZE_STRING);
                 $arr = explode(',',$produto_vvalor);
                 $produto_vvalor = str_replace('.','',$arr[0]) . "." . $arr[1];
-                (open_database())->query("INSERT INTO produto_versoes VALUES (NULL,$produto_vid_produto,'$produto_vversao','$produto_vvalor',1)");
+                (open_database())->query("INSERT INTO produto_versoes VALUES (NULL,$produto_vid_produto,'$produto_vversao','$produto_vvalor',0,1)");
             }
         }
         if(isset($_POST['imagem'])) {
