@@ -6,9 +6,10 @@
     $indicativo_1 = count(($db->query("SELECT * FROM usuario"))->fetch_all(MYSQLI_ASSOC));
     $indicativo_2 = count(($db->query("SELECT * FROM tracking"))->fetch_all(MYSQLI_ASSOC));
     $indicativo_3 = count(($db->query("SELECT * FROM tracking_shop"))->fetch_all(MYSQLI_ASSOC));
+    $indicativo_4 = count(($db->query("SELECT DISTINCT id_produto FROM produto_versoes WHERE estoque = 0 "))->fetch_all(MYSQLI_ASSOC)); 
 ?>
-<script src="<?=BASEURL?>vendor/dist/apexcharts.min.js"></script>
-<link rel="stylesheet" href="<?=BASEURL?>vendor/dist/apexcharts.css">
+<script src="/test-escaler/vendor/dist/apexcharts.min.js"></script>
+<link rel="stylesheet" href="/test-escaler/vendor/dist/apexcharts.css">
 <main role="main">
     <div class="container">
         <div class="row">
@@ -38,7 +39,7 @@
                     </div>
                     <div class="col-6 col-md-3 col-lg-3 border-left">
                         <div class="row">
-                            <div class="text-center h1 font-weight-bold col-12">0</div>
+                            <div class="text-center h1 font-weight-bold col-12"><?=$indicativo_4?></div>
                             <div class="text-center col-12">Produtos com Baixo Estoque</div>
                         </div>
                     </div>

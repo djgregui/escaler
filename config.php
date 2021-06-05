@@ -114,7 +114,8 @@ if(!isset($_COOKIE['escaler_uuid'])) {
 } else {
     $UUID = $_SESSION['escaler_uuid'] = $_COOKIE['escaler_uuid'];
 }
-$db_tracking = new Mysqli('35.222.232.57','nano','mellany0801gui','hotspottest');
+// $db_tracking = new Mysqli('35.222.232.57','nano','mellany0801gui','hotspottest');
+$db_tracking = new mysqli('localhost','ptbr','ptbrxablau','escaler');
 $db_tracking->set_charset('utf8');
 if(isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
     $IP = $_SERVER["HTTP_CF_CONNECTING_IP"];
