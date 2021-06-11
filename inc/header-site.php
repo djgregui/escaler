@@ -16,6 +16,23 @@
   <script src="<?=BASEURL?>vendor/jquery.js"></script> <!-- jQuery by Google -->
   <script src="<?=BASEURL?>vendor/popper.min.js"></script> <!-- Popper by Twitter -->
   <script src="<?=BASEURL?>vendor/bootstrap/js/bootstrap.js"></script> <!-- Bootstrap by Twitter -->
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '523063912378956');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=523063912378956&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Facebook Pixel Code -->
   <style>.bg-escaler {background: rgb(157, 2, 1);}</style>
   <script>
 		n = 0;
@@ -85,7 +102,7 @@
   <!-- Barra Superior com Slogan -->
   <?php if(isset($_SESSION['loggedin_escaler'])) { ?>
     <div class="row py-1 text-light" style="background: rgb(157, 2, 1)">
-      <div class="col-12 col-md-8 col-lg-9 text-center text-uppercase" style="line-height:30px">ESCALER - Ambiente de Desenvolvimento</div>
+      <div class="col-12 col-md-8 col-lg-9 text-center text-uppercase" style="line-height:30px">ESCALER - Compromisso e Segurança</div>
       <div class="col-12 col-md-4 col-lg-3 d-md-block d-lg-block d-none text-right" style='padding-right:20px'>
       <a href="<?=BASEURL?>usuario" class="btn btn-sm btn-default pl-2"><?php if($usuario['profile_pic'] == null) echo '<i class="fas fa-user"></i>'; else echo '<img style="width:24px;height:25px;border-radius:50%;margin-top:-4px;margin-bottom:-2px" src="'.$usuario['profile_pic'].'">'; ?></a>
       <!-- <a href="#" class='btn btn-sm btn-dark text-light pl-2'> -->
@@ -109,7 +126,7 @@
       </div>
     </div>
   <?php } else { ?>
-    <div class="text-center py-1 text-light" style="background: rgb(157, 2, 1)">ESCALER - Ambiente de Desenvolvimento</div>
+    <div class="text-center py-1 text-light" style="background: rgb(157, 2, 1)">ESCALER - Compromisso e Segurança</div>
   <?php } ?>
 
 
